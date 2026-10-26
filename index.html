@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Podocri · Podologia no Centro de Criciúma (prévia)</title>
+<meta name="description" content="Prévia de site para o Podocri, consultório de podologia de Jucilene Aguiar no Centro de Criciúma.">
+<meta property="og:title" content="Podocri · Podologia no Centro de Criciúma · prévia de site">
+<meta property="og:description" content="Unha encravada, fungos, calos, verrugas e podologia infantil, com agendamento pelo WhatsApp.">
+<meta property="og:image" content="https://gabrielmilano.github.io/podocri-mockup/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://gabrielmilano.github.io/podocri-mockup/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+  /* Consultório de saúde: claro, calmo e organizado. Verde-petróleo como cor da marca, menta nos fundos. */
+  :root {
+    --petroleo: #0f5551;
+    --petroleo-esc: #0a3d3a;
+    --menta: #e7f3f0;
+    --menta-2: #f4faf8;
+    --areia: #fbf8f3;
+    --texto: #1f2a29;
+    --suave: #5b6866;
+    --linha: #dde7e4;
+    --ouro: #c99a3a;
+    --zap: #1b9c50;
+    --tit: "Outfit", "Segoe UI", sans-serif;
+    --corpo: "Nunito Sans", "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #fff; color: var(--texto); font: 400 17.5px/1.6 var(--corpo); }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--tit); color: var(--petroleo-esc); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  .wrap { width: min(1140px, 100% - 40px); margin-inline: auto; }
+  .previa { background: var(--petroleo-esc); color: #fff; text-align: center; font-size: 13px; padding: 6px 12px; }
+
+  header { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, .97); border-bottom: 1px solid var(--linha); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+  .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .marca .sinal { width: 42px; height: 42px; border-radius: 50%; background: var(--petroleo); display: grid; place-items: center; color: #fff; font-family: var(--tit); font-weight: 700; font-size: 20px; }
+  .marca b { display: block; font-family: var(--tit); font-weight: 700; font-size: 21px; color: var(--petroleo-esc); line-height: 1.1; }
+  .marca small { display: block; font-size: 13px; color: var(--suave); }
+  nav { display: flex; gap: 26px; font-weight: 600; font-size: 16px; }
+  nav a { text-decoration: none; color: var(--texto); }
+  nav a:hover { color: var(--petroleo); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 6px; font: 700 16px var(--corpo); text-decoration: none; border: 1.5px solid transparent; cursor: pointer; white-space: nowrap; transition: background-color .2s, color .2s; }
+  .btn-prim { background: var(--petroleo); color: #fff; }
+  .btn-prim:hover { background: var(--petroleo-esc); }
+  .btn-sec { border-color: var(--petroleo); color: var(--petroleo); background: transparent; }
+  .btn-sec:hover { background: var(--menta); }
+  .btn-zap { background: var(--zap); color: #fff; width: 100%; }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* Herói com agendamento ao lado */
+  .heroi { background: linear-gradient(180deg, var(--menta-2), #fff); padding: 60px 0 64px; }
+  .heroi .grade { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+  .rotulo { font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--petroleo); }
+  .heroi h1 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.1; margin: 12px 0 18px; }
+  .heroi .lead { font-size: 19px; color: var(--suave); margin: 0 0 26px; max-width: 560px; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+  .confianca { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 30px; }
+  .confianca div { display: grid; }
+  .confianca b { font-family: var(--tit); font-size: 26px; color: var(--petroleo-esc); line-height: 1.1; }
+  .confianca span { font-size: 14.5px; color: var(--suave); }
+  .confianca .estrelas { color: var(--ouro); letter-spacing: 1px; }
+
+  .agenda { background: #fff; border: 1px solid var(--linha); border-radius: 10px; padding: 28px; box-shadow: 0 18px 50px -24px rgba(15, 85, 81, .35); display: grid; gap: 14px; }
+  .agenda h2 { font-size: 22px; }
+  .agenda p { margin: 0; color: var(--suave); font-size: 15.5px; }
+  .campo { display: grid; gap: 6px; }
+  .campo label { font-weight: 700; font-size: 14.5px; }
+  .campo select, .campo input { width: 100%; min-height: 48px; border: 1px solid #c9d7d3; border-radius: 6px; padding: 0 12px; font: inherit; background: #fff; color: var(--texto); }
+  .campo select:focus, .campo input:focus { outline: 2px solid var(--petroleo); outline-offset: 0; }
+  .periodos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .periodos label { position: relative; }
+  .periodos input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .periodos span { display: grid; place-items: center; min-height: 46px; border: 1px solid #c9d7d3; border-radius: 6px; font-weight: 700; font-size: 15px; cursor: pointer; }
+  .periodos input:checked + span { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
+  .periodos input:focus-visible + span { outline: 2px solid var(--ouro); outline-offset: 2px; }
+  .agenda small { color: var(--suave); font-size: 13.5px; text-align: center; }
+
+  section.bloco { padding: 84px 0; }
+  .fundo { background: var(--areia); }
+  .cab { max-width: 640px; margin-bottom: 36px; }
+  .cab h2 { font-size: clamp(28px, 3.4vw, 40px); margin-top: 8px; }
+  .cab p { color: var(--suave); margin: 12px 0 0; }
+
+  /* Tratamentos */
+  .tratamentos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .trat { background: #fff; border: 1px solid var(--linha); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
+  .trat .ic { width: 44px; height: 44px; border-radius: 10px; background: var(--menta); color: var(--petroleo); display: grid; place-items: center; }
+  .trat .ic svg { width: 24px; height: 24px; }
+  .trat h3 { font-size: 18.5px; }
+  .trat p { margin: 0; color: var(--suave); font-size: 15.5px; flex: 1; }
+  .trat button { align-self: flex-start; background: none; border: 0; padding: 4px 0; font: 700 15px var(--corpo); color: var(--petroleo); cursor: pointer; border-bottom: 2px solid var(--menta); }
+  .trat button:hover { border-bottom-color: var(--petroleo); }
+
+  /* Como é o atendimento */
+  .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; background: #fff; }
+  .passo { padding: 28px; border-right: 1px solid var(--linha); }
+  .passo:last-child { border-right: 0; }
+  .passo .n { font-family: var(--tit); font-weight: 700; color: var(--ouro); font-size: 15px; letter-spacing: .08em; }
+  .passo h3 { font-size: 20px; margin: 6px 0 8px; }
+  .passo p { margin: 0; color: var(--suave); font-size: 16px; }
+
+  /* Horários e localização */
+  .local { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 32px; align-items: stretch; }
+  .horarios { background: #fff; border: 1px solid var(--linha); border-radius: 10px; padding: 28px; }
+  .horarios table { width: 100%; border-collapse: collapse; margin-top: 14px; font-variant-numeric: tabular-nums; }
+  .horarios td { padding: 11px 0; border-bottom: 1px solid var(--linha); }
+  .horarios td:last-child { text-align: right; font-weight: 700; }
+  .horarios tr.hoje td { color: var(--petroleo); }
+  .horarios tr.hoje td:first-child::after { content: " · hoje"; font-weight: 700; font-size: 13px; }
+  .horarios .destaque { margin-top: 16px; background: var(--menta); border-radius: 8px; padding: 12px 14px; font-size: 15.5px; color: var(--petroleo-esc); }
+  .mapa { border-radius: 10px; overflow: hidden; border: 1px solid var(--linha); min-height: 360px; display: grid; }
+  .mapa iframe { width: 100%; height: 100%; min-height: 360px; border: 0; }
+  .endereco { margin-top: 14px; color: var(--suave); }
+
+  footer { background: var(--petroleo-esc); color: #cfe2de; padding: 44px 0 110px; font-size: 15px; }
+  footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 28px; }
+  footer h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
+  .ns { grid-column: 1 / -1; border-top: 1px solid rgba(255, 255, 255, .15); padding-top: 16px; font-size: 13px; color: #9fbfb9; }
+  .zap-fixo { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 40; width: 56px; height: 56px; border-radius: 50%; background: var(--zap); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
+  .zap-fixo svg { width: 28px; height: 28px; }
+  :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
+
+  @media (max-width: 1000px) {
+    .heroi .grade, .local { grid-template-columns: 1fr; }
+    .tratamentos { grid-template-columns: 1fr 1fr; }
+    footer .wrap { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav { display: none; }
+    header .btn { min-height: 42px; padding: 0 14px; font-size: 14.5px; }
+    .marca small { display: none; }
+    .heroi { padding: 34px 0 44px; }
+    .heroi h1 { font-size: 31px; }
+    .acoes .btn { flex: 1 1 100%; }
+    .tratamentos, .passos { grid-template-columns: 1fr; }
+    .passo { border-right: 0; border-bottom: 1px solid var(--linha); }
+    .passo:last-child { border-bottom: 0; }
+    .agenda, .horarios { padding: 22px 18px; }
+    section.bloco { padding: 60px 0; }
+    footer .wrap { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+</style>
+</head>
+<body>
+<div class="previa">Prévia de site feita pela Negócios Smart para o Podocri · não é o site oficial</div>
+
+<header>
+  <div class="wrap">
+    <a class="marca" href="#topo" aria-label="Podocri — início"><span class="sinal" aria-hidden="true">P</span><span><b>Podocri</b><small>Podologia · Jucilene Aguiar</small></span></a>
+    <nav aria-label="Principal"><a href="#tratamentos">Tratamentos</a><a href="#atendimento">Atendimento</a><a href="#horarios">Horários</a></nav>
+    <a class="btn btn-prim" href="#agendar">Agendar</a>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="heroi">
+    <div class="wrap grade">
+      <div>
+        <span class="rotulo">Podologia no Centro de Criciúma</span>
+        <h1>Cuidado com os seus pés, com hora marcada e atenção de verdade.</h1>
+        <p class="lead">Unha encravada, fungos, calos, verrugas e podologia infantil com a podóloga Jucilene Aguiar. Atendimento até as 20h às terças e quintas.</p>
+        <div class="acoes">
+          <a class="btn btn-prim" href="#agendar">Agendar avaliação</a>
+          <a class="btn btn-sec" href="#tratamentos">Ver tratamentos</a>
+        </div>
+        <div class="confianca">
+          <div><b>5,0 <span class="estrelas" style="font-size:16px">★★★★★</span></b><span>99 avaliações no Google</span></div>
+          <div><b>Até 20h</b><span>às terças e quintas</span></div>
+          <div><b>Centro</b><span>Ed. Sonata, sala térrea</span></div>
+        </div>
+      </div>
+      <form class="agenda" id="agendar" novalidate>
+        <h2>Agende pelo WhatsApp</h2>
+        <p>Escolha o atendimento e o melhor período. A mensagem chega pronta e a equipe confirma o horário com você.</p>
+        <div class="campo"><label for="f-trat">Atendimento</label>
+          <select id="f-trat">
+            <option>Unha encravada</option><option>Fungos nas unhas (onicomicose)</option><option>Calos e calosidades</option><option>Verrugas</option>
+            <option>Podologia infantil</option><option>Limpeza e cuidado dos pés</option><option>Massagem podal</option><option>Podoscopia (exame da pisada)</option><option>Não sei, quero uma avaliação</option>
+          </select></div>
+        <div class="campo"><span style="font-weight:700;font-size:14.5px">Melhor período</span>
+          <div class="periodos" role="radiogroup" aria-label="Melhor período">
+            <label><input type="radio" name="periodo" value="manhã" checked><span>Manhã</span></label>
+            <label><input type="radio" name="periodo" value="tarde"><span>Tarde</span></label>
+            <label><input type="radio" name="periodo" value="noite (até 20h, ter. e qui.)"><span>Noite</span></label>
+          </div></div>
+        <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" autocomplete="given-name" placeholder="Como podemos te chamar?"></div>
+        <button class="btn btn-zap" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg>Agendar pelo WhatsApp</button>
+        <small>Na prévia, o botão já abre o WhatsApp do Podocri com a mensagem pronta.</small>
+      </form>
+    </div>
+  </section>
+
+  <section class="bloco" id="tratamentos">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo">Tratamentos</span>
+        <h2>O que cuidamos no consultório</h2>
+        <p>Cada atendimento começa por uma avaliação dos seus pés. Toque em "Agendar" e o tratamento já entra na sua mensagem.</p>
+      </div>
+      <div class="tratamentos">
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 20c-1.5-3-1.5-9 2-13s7-3 8 1-1 7-3 9-2 4-2 4"/><path d="M15 6.5c1 .2 1.6-.4 1.6-1.2"/></svg></span><h3>Unha encravada</h3><p>Tratamento da unha que machuca o canto do dedo, com orientação para não voltar.</p><button type="button" data-trat="Unha encravada">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><path d="M9 11h.01M14 9h.01M13 14h.01M10 15h.01"/></svg></span><h3>Fungos nas unhas</h3><p>Avaliação e acompanhamento da onicomicose, com o tratamento indicado para o seu caso.</p><button type="button" data-trat="Fungos nas unhas (onicomicose)">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 17c3-1 5-4 7-4s4 3 7 4"/><path d="M8 12c1-1 2.5-1.5 4-1.5S15 11 16 12"/></svg></span><h3>Calos e calosidades</h3><p>Remoção cuidadosa e orientação sobre calçado e pisada.</p><button type="button" data-trat="Calos e calosidades">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></span><h3>Verrugas</h3><p>Tratamento de verrugas, incluindo a cauterização da verruga plantar.</p><button type="button" data-trat="Verrugas">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="7" r="3"/><path d="M6 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/></svg></span><h3>Podologia infantil</h3><p>Atendimento para crianças, com paciência e linguagem que elas entendem.</p><button type="button" data-trat="Podologia infantil">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></span><h3>Limpeza dos pés</h3><p>Cuidado completo de unhas e pele para manter os pés saudáveis.</p><button type="button" data-trat="Limpeza e cuidado dos pés">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14c4-6 12-6 16 0"/><path d="M8 18c2.5-2.5 5.5-2.5 8 0"/></svg></span><h3>Massagem podal</h3><p>Relaxamento e alívio para pés cansados depois do dia.</p><button type="button" data-trat="Massagem podal">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 15c1.5-4 6.5-4 8 0"/></svg></span><h3>Podoscopia</h3><p>Exame da pisada para entender a origem de dores e calosidades.</p><button type="button" data-trat="Podoscopia (exame da pisada)">Agendar</button></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco fundo" id="atendimento">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo">Como é o atendimento</span>
+        <h2>Simples do começo ao fim</h2>
+      </div>
+      <div class="passos">
+        <div class="passo"><span class="n">PASSO 1</span><h3>Agendamento</h3><p>Você escolhe o atendimento e o período. A confirmação do horário chega pelo WhatsApp.</p></div>
+        <div class="passo"><span class="n">PASSO 2</span><h3>Avaliação</h3><p>A Jucilene avalia seus pés e explica o que será feito antes de começar.</p></div>
+        <div class="passo"><span class="n">PASSO 3</span><h3>Tratamento e retorno</h3><p>Atendimento no consultório e, quando preciso, o retorno já combinado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" id="horarios">
+    <div class="wrap local">
+      <div class="horarios">
+        <span class="rotulo">Horários</span>
+        <h2 style="font-size:28px;margin-top:6px">Quando atendemos</h2>
+        <table aria-label="Horários de atendimento">
+          <tbody>
+            <tr data-dia="1"><td>Segunda</td><td>9h às 19h</td></tr>
+            <tr data-dia="2"><td>Terça</td><td>9h às 20h</td></tr>
+            <tr data-dia="3"><td>Quarta</td><td>9h às 18h</td></tr>
+            <tr data-dia="4"><td>Quinta</td><td>9h às 20h</td></tr>
+            <tr data-dia="5"><td>Sexta</td><td>9h às 17h</td></tr>
+            <tr data-dia="6"><td>Sábado e domingo</td><td>Fechado</td></tr>
+          </tbody>
+        </table>
+        <p class="destaque">Trabalha o dia todo? Às terças e quintas o atendimento vai até as 20h.</p>
+        <p class="endereco"><b style="color:var(--texto)">Ed. Sonata, sala térrea</b><br>R. Dr. José de Patta, 366 · Centro · Criciúma/SC</p>
+        <div class="acoes"><a class="btn btn-prim" href="https://www.google.com/maps/search/?api=1&query=R.+Dr.+Jos%C3%A9+de+Patta+366+Crici%C3%BAma" target="_blank" rel="noopener">Como chegar</a><a class="btn btn-sec" href="https://www.google.com/search?q=Podocri+Jucilene+Aguiar+Crici%C3%BAma" target="_blank" rel="noopener">Ver avaliações</a></div>
+      </div>
+      <div class="mapa"><iframe title="Mapa do Podocri no Centro de Criciúma" src="https://www.google.com/maps?q=R.+Dr.+Jos%C3%A9+de+Patta,+366,+Crici%C3%BAma+-+SC&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3>Podocri · Podologia</h3>Consultório da podóloga Jucilene Aguiar no Centro de Criciúma.</div>
+    <div><h3>Contato</h3>WhatsApp (48) 99649-8963</div>
+    <div><h3>Endereço</h3>Ed. Sonata, sala térrea<br>R. Dr. José de Patta, 366 · Centro · Criciúma/SC</div>
+    <p class="ns">Prévia criada pela Negócios Smart (negociosmart.com.br) como proposta de site. Textos provisórios, revisados com o Podocri antes da publicação.</p>
+  </div>
+</footer>
+
+<a class="zap-fixo" href="#agendar" aria-label="Agendar pelo WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>
+
+<script>
+  const $ = (s) => document.querySelector(s);
+  // Destaca o dia de hoje na tabela de horários
+  const dia = new Date().getDay();
+  const linha = document.querySelector(`tr[data-dia="${dia === 0 ? 6 : dia}"]`);
+  if (linha) linha.classList.add("hoje");
+  // "Agendar" dos tratamentos preenche o formulário
+  document.querySelectorAll("[data-trat]").forEach((b) => b.addEventListener("click", () => {
+    $("#f-trat").value = b.dataset.trat;
+    $("#agendar").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+    $("#f-nome").focus({ preventScroll: true });
+  }));
+  $("#agendar").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nome = $("#f-nome").value.trim();
+    const periodo = document.querySelector("input[name=periodo]:checked").value;
+    const msg = `Olá! ${nome ? "Sou " + nome + ". " : ""}Vim pelo site e gostaria de agendar: ${$("#f-trat").value}. Prefiro ${periodo}.`;
+    window.open("https://wa.me/5548996498963?text=" + encodeURIComponent(msg), "_blank", "noopener");
+  });
+</script>
+</body>
+</html>
