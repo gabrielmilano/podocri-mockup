@@ -16,13 +16,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
 <style>
-  /* Consultório de saúde: claro, calmo e organizado. Verde-petróleo como cor da marca, menta nos fundos. */
+  /* Consultório de podologia: claro e calmo. Assinatura = o pé ilustrado (mapa interativo) e as pegadas. */
   :root {
     --petroleo: #0f5551;
     --petroleo-esc: #0a3d3a;
     --menta: #e7f3f0;
     --menta-2: #f4faf8;
-    --areia: #fbf8f3;
+    --areia: #fbf7f2;
+    --pele: #f6e4d6;
+    --pele-sombra: #ecd0bd;
+    --unha: #fbf1ea;
     --texto: #1f2a29;
     --suave: #5b6866;
     --linha: #dde7e4;
@@ -43,7 +46,8 @@
   header { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, .97); border-bottom: 1px solid var(--linha); }
   header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
   .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .marca .sinal { width: 42px; height: 42px; border-radius: 50%; background: var(--petroleo); display: grid; place-items: center; color: #fff; font-family: var(--tit); font-weight: 700; font-size: 20px; }
+  .marca .sinal { width: 44px; height: 44px; border-radius: 50%; background: var(--petroleo); display: grid; place-items: center; }
+  .marca .sinal svg { width: 18px; height: 34px; color: #fff; transform: rotate(14deg); }
   .marca b { display: block; font-family: var(--tit); font-weight: 700; font-size: 21px; color: var(--petroleo-esc); line-height: 1.1; }
   .marca small { display: block; font-size: 13px; color: var(--suave); }
   nav { display: flex; gap: 26px; font-weight: 600; font-size: 16px; }
@@ -56,25 +60,85 @@
   .btn-sec:hover { background: var(--menta); }
   .btn-zap { background: var(--zap); color: #fff; width: 100%; }
   .btn svg { width: 18px; height: 18px; }
-
-  /* Herói com agendamento ao lado */
-  .heroi { background: linear-gradient(180deg, var(--menta-2), #fff); padding: 60px 0 64px; }
-  .heroi .grade { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
   .rotulo { font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--petroleo); }
-  .heroi h1 { font-size: clamp(34px, 4.6vw, 54px); line-height: 1.1; margin: 12px 0 18px; }
-  .heroi .lead { font-size: 19px; color: var(--suave); margin: 0 0 26px; max-width: 560px; }
+
+  /* Herói: texto + mapa do pé */
+  .heroi { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--menta-2), #fff 85%); padding: 56px 0 40px; }
+  .heroi .grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .heroi h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; margin: 12px 0 18px; }
+  .heroi h1 em { font-style: normal; color: var(--petroleo); background: linear-gradient(transparent 68%, rgba(201, 154, 58, .28) 68%); }
+  .heroi .lead { font-size: 19px; color: var(--suave); margin: 0 0 26px; max-width: 540px; }
   .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
   .confianca { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 30px; }
   .confianca div { display: grid; }
   .confianca b { font-family: var(--tit); font-size: 26px; color: var(--petroleo-esc); line-height: 1.1; }
   .confianca span { font-size: 14.5px; color: var(--suave); }
-  .confianca .estrelas { color: var(--ouro); letter-spacing: 1px; }
+  .confianca .estrelas { color: var(--ouro); letter-spacing: 1px; font-size: 16px; }
 
-  .agenda { background: #fff; border: 1px solid var(--linha); border-radius: 10px; padding: 28px; box-shadow: 0 18px 50px -24px rgba(15, 85, 81, .35); display: grid; gap: 14px; }
-  .agenda h2 { font-size: 22px; }
-  .agenda p { margin: 0; color: var(--suave); font-size: 15.5px; }
+  .mapa-pe { background: #fff; border: 1px solid var(--linha); border-radius: 14px; padding: 22px; box-shadow: 0 24px 60px -30px rgba(15, 85, 81, .45); display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 22px; align-items: center; }
+  .mapa-pe .topo { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .mapa-pe .topo h2 { font-size: 20px; }
+  .vistas { display: inline-flex; background: var(--menta); border-radius: 8px; padding: 3px; }
+  .vistas button { border: 0; background: transparent; font: 700 14px var(--corpo); color: var(--petroleo); padding: 0 12px; min-height: 40px; border-radius: 6px; cursor: pointer; }
+  .vistas button[aria-pressed="true"] { background: #fff; color: var(--petroleo-esc); box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+  .cena { perspective: 1400px; }
+  .cartao-pe { position: relative; aspect-ratio: 320 / 560; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.6, .05, .25, 1); }
+  .cartao-pe.virado { transform: rotateY(180deg); }
+  .face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .face.sola { transform: rotateY(180deg); }
+  .face svg { width: 100%; height: 100%; }
+  .ponto { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; border: 0; padding: 0; background: var(--ouro); box-shadow: 0 0 0 4px rgba(255, 255, 255, .9), 0 2px 8px rgba(0, 0, 0, .25); cursor: pointer; display: grid; place-items: center; color: #fff; font: 700 15px var(--tit); }
+  .ponto::before { content: ""; position: absolute; inset: -8px; }
+  .ponto::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--ouro); animation: pulso 2.2s ease-out infinite; }
+  .ponto[aria-pressed="true"] { background: var(--petroleo); }
+  .ponto[aria-pressed="true"]::after { border-color: var(--petroleo); }
+  @keyframes pulso { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
+  .info { display: grid; gap: 10px; align-content: center; min-height: 250px; }
+  .info .dica { color: var(--suave); font-size: 15.5px; margin: 0; }
+  .info h3 { font-size: 24px; }
+  .info p { margin: 0; color: var(--suave); font-size: 16px; }
+  .info .btn { justify-self: start; margin-top: 4px; }
+  .info .lista { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .info .lista button { border: 1px solid var(--linha); background: #fff; border-radius: 99px; padding: 0 12px; min-height: 36px; font: 600 14px var(--corpo); color: var(--texto); cursor: pointer; }
+  .info .lista button:hover { border-color: var(--petroleo); color: var(--petroleo); }
+  .troca { animation: aparece .35s ease; }
+  @keyframes aparece { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* Trilha de pegadas */
+  .trilha { display: flex; justify-content: center; gap: 34px; padding: 18px 0 8px; color: var(--petroleo); }
+  .trilha svg { width: 16px; height: 32px; opacity: 0; transition: opacity .45s ease, transform .45s ease; }
+  .trilha svg:nth-child(odd) { transform: translateY(8px) rotate(-8deg) scaleX(-1); }
+  .trilha svg:nth-child(even) { transform: translateY(-8px) rotate(8deg); }
+  .trilha.andou svg { opacity: .35; }
+
+  section.bloco { padding: 84px 0; }
+  .fundo { background: var(--areia); }
+  .cab { max-width: 640px; margin-bottom: 36px; }
+  .cab h2 { font-size: clamp(28px, 3.4vw, 40px); margin-top: 8px; }
+  .cab p { color: var(--suave); margin: 12px 0 0; }
+
+  /* Tratamentos em lista, não cards */
+  .tratamentos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; border-top: 1px solid var(--linha); }
+  .trat { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--linha); }
+  .trat .ic { width: 52px; height: 52px; border-radius: 50%; background: var(--pele); color: var(--petroleo-esc); display: grid; place-items: center; }
+  .trat .ic svg { width: 28px; height: 28px; }
+  .trat h3 { font-size: 19px; }
+  .trat p { margin: 2px 0 0; color: var(--suave); font-size: 15.5px; }
+  .trat button { background: none; border: 1px solid var(--linha); border-radius: 6px; min-height: 44px; padding: 0 14px; font: 700 14.5px var(--corpo); color: var(--petroleo); cursor: pointer; }
+  .trat button:hover { border-color: var(--petroleo); background: var(--menta-2); }
+
+  /* Agendamento */
+  .agendar-sec { background: var(--petroleo-esc); color: #d9ebe7; }
+  .agendar-sec .grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 56px; align-items: center; }
+  .agendar-sec h2 { color: #fff; font-size: clamp(28px, 3.4vw, 40px); margin: 8px 0 14px; }
+  .agendar-sec .rotulo { color: #9fd1c7; }
+  .agendar-sec ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; }
+  .agendar-sec li { display: flex; gap: 12px; align-items: center; }
+  .agendar-sec li svg { width: 12px; height: 24px; color: var(--ouro); flex: none; transform: rotate(12deg); }
+  .agenda { background: #fff; color: var(--texto); border-radius: 12px; padding: 28px; display: grid; gap: 14px; }
+  .agenda h3 { font-size: 22px; }
   .campo { display: grid; gap: 6px; }
-  .campo label { font-weight: 700; font-size: 14.5px; }
+  .campo label, .campo .lbl { font-weight: 700; font-size: 14.5px; }
   .campo select, .campo input { width: 100%; min-height: 48px; border: 1px solid #c9d7d3; border-radius: 6px; padding: 0 12px; font: inherit; background: #fff; color: var(--texto); }
   .campo select:focus, .campo input:focus { outline: 2px solid var(--petroleo); outline-offset: 0; }
   .periodos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -84,29 +148,17 @@
   .periodos input:checked + span { background: var(--petroleo); border-color: var(--petroleo); color: #fff; }
   .periodos input:focus-visible + span { outline: 2px solid var(--ouro); outline-offset: 2px; }
   .agenda small { color: var(--suave); font-size: 13.5px; text-align: center; }
+  .agenda.pisca { animation: realce 1.2s ease; }
+  @keyframes realce { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 154, 58, 0); } 30% { box-shadow: 0 0 0 6px rgba(201, 154, 58, .55); } }
 
-  section.bloco { padding: 84px 0; }
-  .fundo { background: var(--areia); }
-  .cab { max-width: 640px; margin-bottom: 36px; }
-  .cab h2 { font-size: clamp(28px, 3.4vw, 40px); margin-top: 8px; }
-  .cab p { color: var(--suave); margin: 12px 0 0; }
-
-  /* Tratamentos */
-  .tratamentos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .trat { background: #fff; border: 1px solid var(--linha); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 8px; }
-  .trat .ic { width: 44px; height: 44px; border-radius: 10px; background: var(--menta); color: var(--petroleo); display: grid; place-items: center; }
-  .trat .ic svg { width: 24px; height: 24px; }
-  .trat h3 { font-size: 18.5px; }
-  .trat p { margin: 0; color: var(--suave); font-size: 15.5px; flex: 1; }
-  .trat button { align-self: flex-start; background: none; border: 0; padding: 4px 0; font: 700 15px var(--corpo); color: var(--petroleo); cursor: pointer; border-bottom: 2px solid var(--menta); }
-  .trat button:hover { border-bottom-color: var(--petroleo); }
-
-  /* Como é o atendimento */
-  .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--linha); border-radius: 10px; overflow: hidden; background: #fff; }
-  .passo { padding: 28px; border-right: 1px solid var(--linha); }
-  .passo:last-child { border-right: 0; }
+  /* Passos como pegadas */
+  .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; position: relative; }
+  .passo { position: relative; padding-top: 70px; }
+  .passo .pg { position: absolute; top: 0; left: 0; width: 26px; height: 52px; color: var(--petroleo); }
+  .passo:nth-child(odd) .pg { transform: rotate(-10deg) scaleX(-1); }
+  .passo:nth-child(even) .pg { top: 10px; transform: rotate(10deg); }
   .passo .n { font-family: var(--tit); font-weight: 700; color: var(--ouro); font-size: 15px; letter-spacing: .08em; }
-  .passo h3 { font-size: 20px; margin: 6px 0 8px; }
+  .passo h3 { font-size: 21px; margin: 4px 0 8px; }
   .passo p { margin: 0; color: var(--suave); font-size: 16px; }
 
   /* Horários e localização */
@@ -131,34 +183,53 @@
   :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
 
   @media (max-width: 1000px) {
-    .heroi .grade, .local { grid-template-columns: 1fr; }
-    .tratamentos { grid-template-columns: 1fr 1fr; }
+    .heroi .grade, .local, .agendar-sec .grade { grid-template-columns: 1fr; }
+    .mapa-pe { max-width: 560px; }
     footer .wrap { grid-template-columns: 1fr 1fr; }
   }
+  @media (max-width: 760px) { .tratamentos { grid-template-columns: 1fr; } }
   @media (max-width: 640px) {
     nav { display: none; }
-    header .btn { min-height: 42px; padding: 0 14px; font-size: 14.5px; }
+    header .btn { min-height: 44px; padding: 0 14px; font-size: 14.5px; }
     .marca small { display: none; }
-    .heroi { padding: 34px 0 44px; }
+    .heroi { padding: 34px 0 28px; }
     .heroi h1 { font-size: 31px; }
     .acoes .btn { flex: 1 1 100%; }
-    .tratamentos, .passos { grid-template-columns: 1fr; }
-    .passo { border-right: 0; border-bottom: 1px solid var(--linha); }
-    .passo:last-child { border-bottom: 0; }
+    .mapa-pe { grid-template-columns: 1fr; padding: 18px; }
+    .cena { width: 200px; margin-inline: auto; }
+    .ponto { width: 26px; height: 26px; margin: -13px 0 0 -13px; font-size: 13px; }
+    .info { min-height: 0; text-align: left; }
+    .trat { grid-template-columns: 44px minmax(0, 1fr); }
+    .trat .ic { width: 44px; height: 44px; }
+    .trat button { grid-column: 2; justify-self: start; }
+    .passos { grid-template-columns: 1fr; gap: 20px; }
     .agenda, .horarios { padding: 22px 18px; }
     section.bloco { padding: 60px 0; }
+    .trilha { gap: 22px; }
     footer .wrap { grid-template-columns: 1fr; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .cartao-pe { transition: none; }
+    .ponto::after { animation: none; opacity: .5; }
+    .trilha svg { transform: none !important; }
+    .troca { animation-name: fade; }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  }
 </style>
 </head>
 <body>
+<!-- Pegada usada como marca, trilha e passos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pegada" viewBox="0 0 40 80"><path fill="currentColor" d="M21 25c8 0 12.5 7 12 17-.4 8-4.4 11.5-4.6 19.4C28.2 70 25 78 18.6 78 12 78 9.6 71.8 10.4 64.5 11.2 57 7.5 51 7.5 41.5 7.5 31 12.6 25 21 25z"/><ellipse fill="currentColor" cx="12.5" cy="13" rx="5.6" ry="7"/><ellipse fill="currentColor" cx="22" cy="8.5" rx="3.6" ry="4.4"/><ellipse fill="currentColor" cx="29" cy="10.5" rx="3.2" ry="3.9"/><ellipse fill="currentColor" cx="34.3" cy="15" rx="2.8" ry="3.4"/><ellipse fill="currentColor" cx="37.4" cy="21.5" rx="2.4" ry="2.9"/></symbol>
+</svg>
+
 <div class="previa">Prévia de site feita pela Negócios Smart para o Podocri · não é o site oficial</div>
 
 <header>
   <div class="wrap">
-    <a class="marca" href="#topo" aria-label="Podocri — início"><span class="sinal" aria-hidden="true">P</span><span><b>Podocri</b><small>Podologia · Jucilene Aguiar</small></span></a>
-    <nav aria-label="Principal"><a href="#tratamentos">Tratamentos</a><a href="#atendimento">Atendimento</a><a href="#horarios">Horários</a></nav>
+    <a class="marca" href="#topo" aria-label="Podocri — início"><span class="sinal" aria-hidden="true"><svg><use href="#pegada"/></svg></span><span><b>Podocri</b><small>Podologia · Jucilene Aguiar</small></span></a>
+    <nav aria-label="Principal"><a href="#mapa">Onde dói?</a><a href="#tratamentos">Tratamentos</a><a href="#horarios">Horários</a></nav>
     <a class="btn btn-prim" href="#agendar">Agendar</a>
   </div>
 </header>
@@ -168,27 +239,143 @@
     <div class="wrap grade">
       <div>
         <span class="rotulo">Podologia no Centro de Criciúma</span>
-        <h1>Cuidado com os seus pés, com hora marcada e atenção de verdade.</h1>
+        <h1>Seus pés merecem <em>cuidado de quem entende</em> deles.</h1>
         <p class="lead">Unha encravada, fungos, calos, verrugas e podologia infantil com a podóloga Jucilene Aguiar. Atendimento até as 20h às terças e quintas.</p>
         <div class="acoes">
           <a class="btn btn-prim" href="#agendar">Agendar avaliação</a>
-          <a class="btn btn-sec" href="#tratamentos">Ver tratamentos</a>
+          <a class="btn btn-sec" href="#mapa">Onde está o incômodo?</a>
         </div>
         <div class="confianca">
-          <div><b>5,0 <span class="estrelas" style="font-size:16px">★★★★★</span></b><span>99 avaliações no Google</span></div>
+          <div><b>5,0 <span class="estrelas">★★★★★</span></b><span>99 avaliações no Google</span></div>
           <div><b>Até 20h</b><span>às terças e quintas</span></div>
           <div><b>Centro</b><span>Ed. Sonata, sala térrea</span></div>
         </div>
       </div>
+
+      <div class="mapa-pe" id="mapa">
+        <div class="topo">
+          <h2>Onde está o incômodo?</h2>
+          <div class="vistas" role="group" aria-label="Lado do pé">
+            <button type="button" data-vista="cima" aria-pressed="true">Por cima</button>
+            <button type="button" data-vista="sola" aria-pressed="false">Sola</button>
+          </div>
+        </div>
+        <div class="cena">
+          <div class="cartao-pe" id="cartao">
+            <div class="face cima">
+              <svg viewBox="0 0 320 560" aria-hidden="true">
+                <g fill="var(--pele)" stroke="var(--petroleo-esc)" stroke-width="3" stroke-linejoin="round">
+                  <path d="M72 110C66 170 62 220 72 280c10 60 24 100 28 150 4 60 20 110 75 115 55 0 73-45 75-95 2-50 12-110 32-170 16-45 26-80 18-110L90 100z"/>
+                  <rect x="70" y="40" width="82" height="110" rx="40"/>
+                  <rect x="154" y="58" width="46" height="78" rx="23"/>
+                  <rect x="200" y="80" width="42" height="70" rx="21"/>
+                  <rect x="240" y="106" width="38" height="62" rx="19"/>
+                  <rect x="274" y="138" width="34" height="54" rx="17"/>
+                </g>
+                <g fill="var(--unha)" stroke="var(--petroleo-esc)" stroke-width="2">
+                  <rect x="85" y="48" width="52" height="46" rx="20"/>
+                  <rect x="164" y="64" width="26" height="26" rx="11"/>
+                  <rect x="209" y="86" width="24" height="23" rx="10"/>
+                  <rect x="248" y="111" width="22" height="20" rx="9"/>
+                  <rect x="281" y="143" width="20" height="17" rx="8"/>
+                </g>
+                <g fill="none" stroke="var(--petroleo-esc)" stroke-width="2" stroke-linecap="round" opacity=".28">
+                  <path d="M112 165c6 70 18 140 38 200M178 150c4 70 8 130 14 180M222 165c-2 55-4 100 0 145M258 180c-6 40-10 75-10 110"/>
+                  <path d="M90 122c14 6 30 6 44 0M166 112c8 4 16 4 24 0M211 128c7 3 14 3 21 0"/>
+                </g>
+              </svg>
+              <button type="button" class="ponto" style="left:27%;top:15%" data-zona="encravada" aria-label="Canto da unha do dedão: unha encravada">1</button>
+              <button type="button" class="ponto" style="left:69%;top:17.5%" data-zona="fungos" aria-label="Unhas: fungos">2</button>
+              <button type="button" class="ponto" style="left:92%;top:31%" data-zona="calos" aria-label="Dedinho: calos">3</button>
+            </div>
+            <div class="face sola">
+              <svg viewBox="0 0 320 560" aria-hidden="true">
+                <g transform="translate(320 0) scale(-1 1)">
+                  <g fill="var(--pele)" stroke="var(--petroleo-esc)" stroke-width="3" stroke-linejoin="round">
+                    <path d="M72 110C66 170 62 220 72 280c10 60 24 100 28 150 4 60 20 110 75 115 55 0 73-45 75-95 2-50 12-110 32-170 16-45 26-80 18-110L90 100z"/>
+                    <rect x="70" y="40" width="82" height="110" rx="40"/>
+                    <rect x="154" y="58" width="46" height="78" rx="23"/>
+                    <rect x="200" y="80" width="42" height="70" rx="21"/>
+                    <rect x="240" y="106" width="38" height="62" rx="19"/>
+                    <rect x="274" y="138" width="34" height="54" rx="17"/>
+                  </g>
+                  <g fill="var(--pele-sombra)">
+                    <ellipse cx="111" cy="82" rx="30" ry="32"/>
+                    <ellipse cx="177" cy="88" rx="16" ry="20"/>
+                    <ellipse cx="221" cy="106" rx="14" ry="17"/>
+                    <ellipse cx="259" cy="128" rx="13" ry="15"/>
+                    <ellipse cx="291" cy="157" rx="11" ry="13"/>
+                    <path d="M72 175c48-16 168-12 230 15-2 40-52 58-112 58-60-2-110-18-118-73z"/>
+                    <path d="M282 280c-14 50-27 110-32 170h-18c4-60 16-120 34-170z" opacity=".6"/>
+                    <ellipse cx="175" cy="488" rx="58" ry="48"/>
+                  </g>
+                </g>
+              </svg>
+              <button type="button" class="ponto" style="left:65%;top:38%" data-zona="verruga" aria-label="Sola, embaixo dos dedos: verruga plantar">4</button>
+              <button type="button" class="ponto" style="left:66%;top:61%" data-zona="pisada" aria-label="Arco do pé: pisada">5</button>
+              <button type="button" class="ponto" style="left:45%;top:87%" data-zona="calosidade" aria-label="Calcanhar: calosidade">6</button>
+            </div>
+          </div>
+        </div>
+        <div class="info" id="info" aria-live="polite">
+          <p class="dica">Toque em um ponto do pé para ver o que a Jucilene trata ali. Vire o pé para ver a sola.</p>
+          <div class="lista">
+            <button type="button" data-zona="encravada">Unha encravada</button>
+            <button type="button" data-zona="fungos">Fungos</button>
+            <button type="button" data-zona="calos">Calos</button>
+            <button type="button" data-zona="verruga">Verruga plantar</button>
+            <button type="button" data-zona="calosidade">Calcanhar</button>
+            <button type="button" data-zona="pisada">Pisada</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trilha" aria-hidden="true">
+    <svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg><svg><use href="#pegada"/></svg>
+  </div>
+
+  <section class="bloco" id="tratamentos">
+    <div class="wrap">
+      <div class="cab">
+        <span class="rotulo">Tratamentos</span>
+        <h2>Do dedão ao calcanhar</h2>
+        <p>Todo atendimento começa por uma avaliação dos seus pés. Toque em "Agendar" e o tratamento já entra na sua mensagem.</p>
+      </div>
+      <div class="tratamentos">
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M8.5 8.5V7a3.5 3.5 0 0 1 7 0v1.5"/><path d="M8 6.5 6.5 5"/></svg></span><div><h3>Unha encravada</h3><p>Tratamento da unha que machuca o canto do dedo, com orientação de corte.</p></div><button type="button" data-trat="Unha encravada">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="6"/><path d="M9 7h.01M12 9h.01M14.5 6.5h.01"/></svg></span><div><h3>Fungos nas unhas</h3><p>Avaliação e acompanhamento da onicomicose, com o cuidado indicado para o seu caso.</p></div><button type="button" data-trat="Fungos nas unhas (onicomicose)">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24"><use href="#pegada" x="7" y="2" width="10" height="20" style="color:currentColor"/></svg></span><div><h3>Calos e calosidades</h3><p>Remoção cuidadosa e orientação sobre calçado e pisada.</p></div><button type="button" data-trat="Calos e calosidades">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5" stroke-dasharray="2 3"/></svg></span><div><h3>Verrugas</h3><p>Tratamento de verrugas, incluindo a cauterização da verruga plantar.</p></div><button type="button" data-trat="Verrugas">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24"><use href="#pegada" x="8.5" y="5" width="7" height="14" style="color:currentColor"/></svg></span><div><h3>Podologia infantil</h3><p>Atendimento para crianças, com paciência e linguagem que elas entendem.</p></div><button type="button" data-trat="Podologia infantil">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 15c2-1 3-3 7-3s5 2 7 3"/><path d="M8 8c0-1.5 1-3 2-3M12 7c0-1.5 1-3 2-3M16 8c0-1.5 1-3 2-3"/></svg></span><div><h3>Limpeza dos pés</h3><p>Cuidado completo de unhas e pele para manter os pés saudáveis.</p></div><button type="button" data-trat="Limpeza e cuidado dos pés">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14c4-6 12-6 16 0"/><path d="M8 18c2.5-2.5 5.5-2.5 8 0"/></svg></span><div><h3>Massagem podal</h3><p>Relaxamento e alívio para pés cansados depois do dia.</p></div><button type="button" data-trat="Massagem podal">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 16c-1-3 0-8 3-8s2 4 1 6 1 3 2 2"/></svg></span><div><h3>Podoscopia</h3><p>Exame da pisada para entender a origem de dores e calosidades.</p></div><button type="button" data-trat="Podoscopia (exame da pisada)">Agendar</button></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco agendar-sec">
+    <div class="wrap grade">
+      <div>
+        <span class="rotulo">Agendamento</span>
+        <h2>Marque seu horário sem esperar resposta.</h2>
+        <p>Escolha o atendimento e o melhor período. A mensagem chega pronta no WhatsApp do consultório e a equipe confirma o horário com você.</p>
+        <ul>
+          <li><svg><use href="#pegada"/></svg>Atendimento de segunda a sexta</li>
+          <li><svg><use href="#pegada"/></svg>Até 20h às terças e quintas</li>
+          <li><svg><use href="#pegada"/></svg>Centro de Criciúma, sala térrea, sem escadas</li>
+        </ul>
+      </div>
       <form class="agenda" id="agendar" novalidate>
-        <h2>Agende pelo WhatsApp</h2>
-        <p>Escolha o atendimento e o melhor período. A mensagem chega pronta e a equipe confirma o horário com você.</p>
+        <h3>Agende pelo WhatsApp</h3>
         <div class="campo"><label for="f-trat">Atendimento</label>
           <select id="f-trat">
             <option>Unha encravada</option><option>Fungos nas unhas (onicomicose)</option><option>Calos e calosidades</option><option>Verrugas</option>
             <option>Podologia infantil</option><option>Limpeza e cuidado dos pés</option><option>Massagem podal</option><option>Podoscopia (exame da pisada)</option><option>Não sei, quero uma avaliação</option>
           </select></div>
-        <div class="campo"><span style="font-weight:700;font-size:14.5px">Melhor período</span>
+        <div class="campo"><span class="lbl">Melhor período</span>
           <div class="periodos" role="radiogroup" aria-label="Melhor período">
             <label><input type="radio" name="periodo" value="manhã" checked><span>Manhã</span></label>
             <label><input type="radio" name="periodo" value="tarde"><span>Tarde</span></label>
@@ -201,36 +388,16 @@
     </div>
   </section>
 
-  <section class="bloco" id="tratamentos">
-    <div class="wrap">
-      <div class="cab">
-        <span class="rotulo">Tratamentos</span>
-        <h2>O que cuidamos no consultório</h2>
-        <p>Cada atendimento começa por uma avaliação dos seus pés. Toque em "Agendar" e o tratamento já entra na sua mensagem.</p>
-      </div>
-      <div class="tratamentos">
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 20c-1.5-3-1.5-9 2-13s7-3 8 1-1 7-3 9-2 4-2 4"/><path d="M15 6.5c1 .2 1.6-.4 1.6-1.2"/></svg></span><h3>Unha encravada</h3><p>Tratamento da unha que machuca o canto do dedo, com orientação para não voltar.</p><button type="button" data-trat="Unha encravada">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="7"/><path d="M9 11h.01M14 9h.01M13 14h.01M10 15h.01"/></svg></span><h3>Fungos nas unhas</h3><p>Avaliação e acompanhamento da onicomicose, com o tratamento indicado para o seu caso.</p><button type="button" data-trat="Fungos nas unhas (onicomicose)">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 17c3-1 5-4 7-4s4 3 7 4"/><path d="M8 12c1-1 2.5-1.5 4-1.5S15 11 16 12"/></svg></span><h3>Calos e calosidades</h3><p>Remoção cuidadosa e orientação sobre calçado e pisada.</p><button type="button" data-trat="Calos e calosidades">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></span><h3>Verrugas</h3><p>Tratamento de verrugas, incluindo a cauterização da verruga plantar.</p><button type="button" data-trat="Verrugas">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="7" r="3"/><path d="M6 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/></svg></span><h3>Podologia infantil</h3><p>Atendimento para crianças, com paciência e linguagem que elas entendem.</p><button type="button" data-trat="Podologia infantil">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/><circle cx="12" cy="12" r="4"/></svg></span><h3>Limpeza dos pés</h3><p>Cuidado completo de unhas e pele para manter os pés saudáveis.</p><button type="button" data-trat="Limpeza e cuidado dos pés">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14c4-6 12-6 16 0"/><path d="M8 18c2.5-2.5 5.5-2.5 8 0"/></svg></span><h3>Massagem podal</h3><p>Relaxamento e alívio para pés cansados depois do dia.</p><button type="button" data-trat="Massagem podal">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 15c1.5-4 6.5-4 8 0"/></svg></span><h3>Podoscopia</h3><p>Exame da pisada para entender a origem de dores e calosidades.</p><button type="button" data-trat="Podoscopia (exame da pisada)">Agendar</button></article>
-      </div>
-    </div>
-  </section>
-
   <section class="bloco fundo" id="atendimento">
     <div class="wrap">
       <div class="cab">
         <span class="rotulo">Como é o atendimento</span>
-        <h2>Simples do começo ao fim</h2>
+        <h2>Passo a passo, sem pressa</h2>
       </div>
       <div class="passos">
-        <div class="passo"><span class="n">PASSO 1</span><h3>Agendamento</h3><p>Você escolhe o atendimento e o período. A confirmação do horário chega pelo WhatsApp.</p></div>
-        <div class="passo"><span class="n">PASSO 2</span><h3>Avaliação</h3><p>A Jucilene avalia seus pés e explica o que será feito antes de começar.</p></div>
-        <div class="passo"><span class="n">PASSO 3</span><h3>Tratamento e retorno</h3><p>Atendimento no consultório e, quando preciso, o retorno já combinado.</p></div>
+        <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 1</span><h3>Agendamento</h3><p>Você escolhe o atendimento e o período. A confirmação do horário chega pelo WhatsApp.</p></div>
+        <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 2</span><h3>Avaliação</h3><p>A Jucilene avalia seus pés e explica o que será feito antes de começar.</p></div>
+        <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 3</span><h3>Tratamento e retorno</h3><p>Atendimento no consultório e, quando preciso, o retorno já combinado.</p></div>
       </div>
     </div>
   </section>
@@ -272,16 +439,55 @@
 
 <script>
   const $ = (s) => document.querySelector(s);
+  const $$ = (s) => document.querySelectorAll(s);
+  const reduzir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Mapa do pé: cada ponto mostra o tratamento daquela região
+  const zonas = {
+    encravada: { vista: "cima", t: "Unha encravada", d: "Quando o canto da unha entra na pele e dói ao calçar. A podóloga trata e orienta o corte certo para evitar que volte.", trat: "Unha encravada" },
+    fungos: { vista: "cima", t: "Fungos nas unhas", d: "Unha amarelada, grossa ou quebradiça pode ser onicomicose. Começa com uma avaliação para indicar o cuidado certo.", trat: "Fungos nas unhas (onicomicose)" },
+    calos: { vista: "cima", t: "Calos nos dedos", d: "O atrito do calçado forma calos no dedinho, em cima e entre os dedos. Remoção cuidadosa e orientação de calçado.", trat: "Calos e calosidades" },
+    verruga: { vista: "sola", t: "Verruga plantar", d: "Aparece na sola e incomoda ao pisar. Tratamento no consultório, incluindo a cauterização.", trat: "Verrugas" },
+    pisada: { vista: "sola", t: "Pisada e arco do pé", d: "Dor ao caminhar ou calos que sempre voltam podem vir da pisada. A podoscopia mostra como você apoia o pé.", trat: "Podoscopia (exame da pisada)" },
+    calosidade: { vista: "sola", t: "Calcanhar ressecado", d: "Pele grossa e rachaduras no calcanhar. Desbaste cuidadoso e orientação de hidratação.", trat: "Calos e calosidades" },
+  };
+  const info = $("#info");
+  const listaHTML = info.querySelector(".lista").outerHTML;
+
+  function virar(vista) {
+    $("#cartao").classList.toggle("virado", vista === "sola");
+    $$("[data-vista]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.vista === vista));
+  }
+  function mostrar(id) {
+    const z = zonas[id];
+    virar(z.vista);
+    $$(".ponto").forEach((p) => p.setAttribute("aria-pressed", p.dataset.zona === id));
+    info.innerHTML = `<div class="troca" style="display:grid;gap:10px"><span class="rotulo">${z.vista === "cima" ? "Por cima do pé" : "Sola do pé"}</span><h3>${z.t}</h3><p>${z.d}</p><button type="button" class="btn btn-prim" data-trat="${z.trat}">Agendar avaliação</button></div>${listaHTML}`;
+  }
+  $$("[data-vista]").forEach((b) => b.addEventListener("click", () => virar(b.dataset.vista)));
+  document.addEventListener("click", (e) => {
+    const zona = e.target.closest("[data-zona]");
+    if (zona) return mostrar(zona.dataset.zona);
+    const trat = e.target.closest("[data-trat]");
+    if (trat) {
+      $("#f-trat").value = trat.dataset.trat;
+      const form = $("#agendar");
+      form.scrollIntoView({ behavior: reduzir ? "auto" : "smooth", block: "center" });
+      form.classList.remove("pisca"); void form.offsetWidth; form.classList.add("pisca");
+      $("#f-nome").focus({ preventScroll: true });
+    }
+  });
+
+  // Trilha de pegadas aparece passo a passo ao rolar
+  const trilha = $(".trilha");
+  trilha.querySelectorAll("svg").forEach((s, i) => (s.style.transitionDelay = i * 140 + "ms"));
+  new IntersectionObserver((ents, obs) => ents.forEach((e) => { if (e.isIntersecting) { trilha.classList.add("andou"); obs.disconnect(); } }), { threshold: .6 }).observe(trilha);
+
   // Destaca o dia de hoje na tabela de horários
   const dia = new Date().getDay();
   const linha = document.querySelector(`tr[data-dia="${dia === 0 ? 6 : dia}"]`);
   if (linha) linha.classList.add("hoje");
-  // "Agendar" dos tratamentos preenche o formulário
-  document.querySelectorAll("[data-trat]").forEach((b) => b.addEventListener("click", () => {
-    $("#f-trat").value = b.dataset.trat;
-    $("#agendar").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
-    $("#f-nome").focus({ preventScroll: true });
-  }));
+
   $("#agendar").addEventListener("submit", (e) => {
     e.preventDefault();
     const nome = $("#f-nome").value.trim();
