@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Podocri · Podologia no Centro de Criciúma (prévia)</title>
-<meta name="description" content="Prévia de site para o Podocri, consultório de podologia de Jucilene Aguiar no Centro de Criciúma.">
-<meta property="og:title" content="Podocri · Podologia no Centro de Criciúma · prévia de site">
+<title>Podocri · Podologia clínica em Criciúma (prévia)</title>
+<meta name="description" content="Prévia de site para a Podocri, clínica de podologia no Centro de Criciúma: avaliação do pé à postura, unha encravada, fungos, calos e dor no pé.">
+<meta property="og:title" content="Podocri · Podologia clínica em Criciúma · prévia de site">
 <meta property="og:description" content="Unha encravada, fungos, calos, verrugas e podologia infantil, com agendamento pelo WhatsApp.">
 <meta property="og:image" content="https://gabrielmilano.github.io/podocri-mockup/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -16,20 +16,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
 <style>
-  /* Consultório de podologia: claro e calmo. Assinatura = o pé ilustrado (mapa interativo) e as pegadas. */
+  /* Podocri: cores da logo (azul das pegadas, aro azul-petróleo, cinza). Assinatura = mapa do pé + pegadas da logo. */
   :root {
-    --petroleo: #0f5551;
-    --petroleo-esc: #0a3d3a;
-    --menta: #e7f3f0;
-    --menta-2: #f4faf8;
-    --areia: #fbf7f2;
+    --petroleo: #07698e;
+    --petroleo-esc: #0e2c3d;
+    --menta: #e4eef3;
+    --menta-2: #f3f7fa;
+    --areia: #f5f8fa;
     --pele: #f6e4d6;
     --pele-sombra: #ecd0bd;
     --unha: #fbf1ea;
     --texto: #1f2a29;
     --suave: #5b6866;
-    --linha: #dde7e4;
-    --ouro: #c99a3a;
+    --linha: #dae4ea;
+    --ouro: #2b9cc9;
+    --cinza-marca: #a3b6bc;
     --zap: #1b9c50;
     --tit: "Outfit", "Segoe UI", sans-serif;
     --corpo: "Nunito Sans", "Segoe UI", sans-serif;
@@ -46,8 +47,7 @@
   header { position: sticky; top: 0; z-index: 30; background: rgba(255, 255, 255, .97); border-bottom: 1px solid var(--linha); }
   header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
   .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .marca .sinal { width: 44px; height: 44px; border-radius: 50%; background: var(--petroleo); display: grid; place-items: center; }
-  .marca .sinal svg { width: 18px; height: 34px; color: #fff; transform: rotate(14deg); }
+  .marca img { width: 50px; height: 50px; border-radius: 50%; }
   .marca b { display: block; font-family: var(--tit); font-weight: 700; font-size: 21px; color: var(--petroleo-esc); line-height: 1.1; }
   .marca small { display: block; font-size: 13px; color: var(--suave); }
   nav { display: flex; gap: 26px; font-weight: 600; font-size: 16px; }
@@ -66,7 +66,7 @@
   .heroi { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--menta-2), #fff 85%); padding: 56px 0 40px; }
   .heroi .grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
   .heroi h1 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; margin: 12px 0 18px; }
-  .heroi h1 em { font-style: normal; color: var(--petroleo); background: linear-gradient(transparent 68%, rgba(201, 154, 58, .28) 68%); }
+  .heroi h1 em { font-style: normal; color: var(--petroleo); background: linear-gradient(transparent 68%, rgba(43, 156, 201, .22) 68%); }
   .heroi .lead { font-size: 19px; color: var(--suave); margin: 0 0 26px; max-width: 540px; }
   .acoes { display: flex; flex-wrap: wrap; gap: 12px; }
   .confianca { display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 30px; }
@@ -75,7 +75,7 @@
   .confianca span { font-size: 14.5px; color: var(--suave); }
   .confianca .estrelas { color: var(--ouro); letter-spacing: 1px; font-size: 16px; }
 
-  .mapa-pe { background: #fff; border: 1px solid var(--linha); border-radius: 14px; padding: 22px; box-shadow: 0 24px 60px -30px rgba(15, 85, 81, .45); display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 22px; align-items: center; }
+  .mapa-pe { background: #fff; border: 1px solid var(--linha); border-radius: 14px; padding: 22px; box-shadow: 0 24px 60px -30px rgba(7, 60, 90, .45); display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 22px; align-items: center; }
   .mapa-pe .topo { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
   .mapa-pe .topo h2 { font-size: 20px; }
   .vistas { display: inline-flex; background: var(--menta); border-radius: 8px; padding: 3px; }
@@ -127,11 +127,23 @@
   .trat button { background: none; border: 1px solid var(--linha); border-radius: 6px; min-height: 44px; padding: 0 14px; font: 700 14.5px var(--corpo); color: var(--petroleo); cursor: pointer; }
   .trat button:hover { border-color: var(--petroleo); background: var(--menta-2); }
 
+  /* Equipe */
+  .equipe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fotos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; border-radius: 12px; }
+  .fotos img:last-child { margin-top: 40px; }
+  .equipe h2 { font-size: clamp(28px, 3.4vw, 40px); margin: 8px 0 14px; }
+  .equipe .txt { color: var(--suave); margin: 0 0 20px; }
+  .pilares { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 0; border-top: 1px solid var(--linha); }
+  .pilares li { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--linha); }
+  .pilares b { font-family: var(--tit); color: var(--petroleo); }
+  .pilares span { color: var(--suave); }
+
   /* Agendamento */
-  .agendar-sec { background: var(--petroleo-esc); color: #d9ebe7; }
+  .agendar-sec { background: var(--petroleo-esc); color: #d6e6ee; }
   .agendar-sec .grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 56px; align-items: center; }
   .agendar-sec h2 { color: #fff; font-size: clamp(28px, 3.4vw, 40px); margin: 8px 0 14px; }
-  .agendar-sec .rotulo { color: #9fd1c7; }
+  .agendar-sec .rotulo { color: #9fd0e6; }
   .agendar-sec ul { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; }
   .agendar-sec li { display: flex; gap: 12px; align-items: center; }
   .agendar-sec li svg { width: 12px; height: 24px; color: var(--ouro); flex: none; transform: rotate(12deg); }
@@ -149,7 +161,7 @@
   .periodos input:focus-visible + span { outline: 2px solid var(--ouro); outline-offset: 2px; }
   .agenda small { color: var(--suave); font-size: 13.5px; text-align: center; }
   .agenda.pisca { animation: realce 1.2s ease; }
-  @keyframes realce { 0%, 100% { box-shadow: 0 0 0 0 rgba(201, 154, 58, 0); } 30% { box-shadow: 0 0 0 6px rgba(201, 154, 58, .55); } }
+  @keyframes realce { 0%, 100% { box-shadow: 0 0 0 0 rgba(43, 156, 201, 0); } 30% { box-shadow: 0 0 0 6px rgba(43, 156, 201, .55); } }
 
   /* Passos como pegadas */
   .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; position: relative; }
@@ -174,10 +186,13 @@
   .mapa iframe { width: 100%; height: 100%; min-height: 360px; border: 0; }
   .endereco { margin-top: 14px; color: var(--suave); }
 
-  footer { background: var(--petroleo-esc); color: #cfe2de; padding: 44px 0 110px; font-size: 15px; }
+  footer { background: var(--petroleo-esc); color: #cfe0e8; padding: 44px 0 110px; font-size: 15px; }
   footer .wrap { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 28px; }
   footer h3 { color: #fff; font-size: 16px; margin-bottom: 8px; }
-  .ns { grid-column: 1 / -1; border-top: 1px solid rgba(255, 255, 255, .15); padding-top: 16px; font-size: 13px; color: #9fbfb9; }
+  footer a { color: #fff; }
+  .rod-marca { display: flex; gap: 14px; align-items: flex-start; }
+  .rod-marca img { width: 72px; height: 72px; border-radius: 50%; flex: none; }
+  .ns { grid-column: 1 / -1; border-top: 1px solid rgba(255, 255, 255, .15); padding-top: 16px; font-size: 13px; color: #9db8c6; }
   .zap-fixo { position: fixed; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom)); z-index: 40; width: 56px; height: 56px; border-radius: 50%; background: var(--zap); color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0, 0, 0, .25); }
   .zap-fixo svg { width: 28px; height: 28px; }
   :focus-visible { outline: 2px solid var(--ouro); outline-offset: 3px; }
@@ -187,7 +202,7 @@
     .mapa-pe { max-width: 560px; }
     footer .wrap { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 760px) { .tratamentos { grid-template-columns: 1fr; } }
+  @media (max-width: 760px) { .tratamentos, .equipe { grid-template-columns: 1fr; } .equipe { gap: 28px; } .pilares li { grid-template-columns: 1fr; gap: 2px; } }
   @media (max-width: 640px) {
     nav { display: none; }
     header .btn { min-height: 44px; padding: 0 14px; font-size: 14.5px; }
@@ -228,8 +243,8 @@
 
 <header>
   <div class="wrap">
-    <a class="marca" href="#topo" aria-label="Podocri — início"><span class="sinal" aria-hidden="true"><svg><use href="#pegada"/></svg></span><span><b>Podocri</b><small>Podologia · Jucilene Aguiar</small></span></a>
-    <nav aria-label="Principal"><a href="#mapa">Onde dói?</a><a href="#tratamentos">Tratamentos</a><a href="#horarios">Horários</a></nav>
+    <a class="marca" href="#topo" aria-label="Podocri — início"><img src="assets/logo-160.png" alt="" width="50" height="50"><span><b>Podocri</b><small>Podologia clínica · Criciúma</small></span></a>
+    <nav aria-label="Principal"><a href="#mapa">Onde dói?</a><a href="#tratamentos">Tratamentos</a><a href="#equipe">Equipe</a><a href="#horarios">Horários</a></nav>
     <a class="btn btn-prim" href="#agendar">Agendar</a>
   </div>
 </header>
@@ -238,9 +253,9 @@
   <section class="heroi">
     <div class="wrap grade">
       <div>
-        <span class="rotulo">Podologia no Centro de Criciúma</span>
+        <span class="rotulo">Podologia clínica · Centro de Criciúma</span>
         <h1>Seus pés merecem <em>cuidado de quem entende</em> deles.</h1>
-        <p class="lead">Unha encravada, fungos, calos, verrugas e podologia infantil com a podóloga Jucilene Aguiar. Atendimento até as 20h às terças e quintas.</p>
+        <p class="lead">Avaliação do pé à postura, com podólogas e biomedicina no mesmo consultório. Unha encravada, fungos, calos, verrugas, dor no pé e podologia infantil, com atendimento até as 20h às terças e quintas.</p>
         <div class="acoes">
           <a class="btn btn-prim" href="#agendar">Agendar avaliação</a>
           <a class="btn btn-sec" href="#mapa">Onde está o incômodo?</a>
@@ -318,7 +333,7 @@
           </div>
         </div>
         <div class="info" id="info" aria-live="polite">
-          <p class="dica">Toque em um ponto do pé para ver o que a Jucilene trata ali. Vire o pé para ver a sola.</p>
+          <p class="dica">Toque em um ponto do pé para ver o que a equipe trata ali. Vire o pé para ver a sola.</p>
           <div class="lista">
             <button type="button" data-zona="encravada">Unha encravada</button>
             <button type="button" data-zona="fungos">Fungos</button>
@@ -351,7 +366,28 @@
         <article class="trat"><span class="ic"><svg viewBox="0 0 24 24"><use href="#pegada" x="8.5" y="5" width="7" height="14" style="color:currentColor"/></svg></span><div><h3>Podologia infantil</h3><p>Atendimento para crianças, com paciência e linguagem que elas entendem.</p></div><button type="button" data-trat="Podologia infantil">Agendar</button></article>
         <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 15c2-1 3-3 7-3s5 2 7 3"/><path d="M8 8c0-1.5 1-3 2-3M12 7c0-1.5 1-3 2-3M16 8c0-1.5 1-3 2-3"/></svg></span><div><h3>Limpeza dos pés</h3><p>Cuidado completo de unhas e pele para manter os pés saudáveis.</p></div><button type="button" data-trat="Limpeza e cuidado dos pés">Agendar</button></article>
         <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 14c4-6 12-6 16 0"/><path d="M8 18c2.5-2.5 5.5-2.5 8 0"/></svg></span><div><h3>Massagem podal</h3><p>Relaxamento e alívio para pés cansados depois do dia.</p></div><button type="button" data-trat="Massagem podal">Agendar</button></article>
-        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 16c-1-3 0-8 3-8s2 4 1 6 1 3 2 2"/></svg></span><div><h3>Podoscopia</h3><p>Exame da pisada para entender a origem de dores e calosidades.</p></div><button type="button" data-trat="Podoscopia (exame da pisada)">Agendar</button></article>
+        <article class="trat"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9 16c-1-3 0-8 3-8s2 4 1 6 1 3 2 2"/></svg></span><div><h3>Avaliação do pé à postura</h3><p>Podoscopia e análise da pisada para entender a origem de dores e calosidades.</p></div><button type="button" data-trat="Avaliação do pé à postura">Agendar</button></article>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="bloco fundo" id="equipe">
+    <div class="wrap equipe">
+      <div class="fotos">
+        <img src="assets/equipe-1.webp" alt="Podóloga da equipe Podocri com o uniforme da clínica" width="640" height="640" loading="lazy">
+        <img src="assets/equipe-2.webp" alt="Podóloga da equipe Podocri no consultório" width="640" height="640" loading="lazy">
+      </div>
+      <div>
+        <span class="rotulo">Quem cuida de você</span>
+        <h2>Podólogas e biomedicina no mesmo lugar</h2>
+        <p class="txt">A Podocri é uma clínica de podologia no Centro de Criciúma. O cuidado vai além da unha: a equipe avalia do pé à postura para tratar a dor, prevenir e acompanhar você ao longo do tempo.</p>
+        <ul class="pilares">
+          <li><b>Avaliação</b><span>Do pé à postura, antes de qualquer tratamento.</span></li>
+          <li><b>Dor e prevenção</b><span>Tratar o que incomoda e evitar que volte.</span></li>
+          <li><b>Cuidado contínuo</b><span>Retornos combinados e lembrete pelo WhatsApp.</span></li>
+        </ul>
+        <a class="btn btn-sec" href="https://www.instagram.com/podocrioficial/" target="_blank" rel="noopener">Ver o dia a dia no Instagram</a>
       </div>
     </div>
   </section>
@@ -361,9 +397,9 @@
       <div>
         <span class="rotulo">Agendamento</span>
         <h2>Marque seu horário sem esperar resposta.</h2>
-        <p>Escolha o atendimento e o melhor período. A mensagem chega pronta no WhatsApp do consultório e a equipe confirma o horário com você.</p>
+        <p>Escolha o atendimento e o melhor período. A mensagem chega pronta no WhatsApp da Podocri, onde a Helena, nossa assistente, confirma o horário com você.</p>
         <ul>
-          <li><svg><use href="#pegada"/></svg>Atendimento de segunda a sexta</li>
+          <li><svg><use href="#pegada"/></svg>A Helena responde no WhatsApp a qualquer hora</li>
           <li><svg><use href="#pegada"/></svg>Até 20h às terças e quintas</li>
           <li><svg><use href="#pegada"/></svg>Centro de Criciúma, sala térrea, sem escadas</li>
         </ul>
@@ -373,7 +409,7 @@
         <div class="campo"><label for="f-trat">Atendimento</label>
           <select id="f-trat">
             <option>Unha encravada</option><option>Fungos nas unhas (onicomicose)</option><option>Calos e calosidades</option><option>Verrugas</option>
-            <option>Podologia infantil</option><option>Limpeza e cuidado dos pés</option><option>Massagem podal</option><option>Podoscopia (exame da pisada)</option><option>Não sei, quero uma avaliação</option>
+            <option>Podologia infantil</option><option>Limpeza e cuidado dos pés</option><option>Massagem podal</option><option>Avaliação do pé à postura</option><option>Não sei, quero uma avaliação</option>
           </select></div>
         <div class="campo"><span class="lbl">Melhor período</span>
           <div class="periodos" role="radiogroup" aria-label="Melhor período">
@@ -396,7 +432,7 @@
       </div>
       <div class="passos">
         <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 1</span><h3>Agendamento</h3><p>Você escolhe o atendimento e o período. A confirmação do horário chega pelo WhatsApp.</p></div>
-        <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 2</span><h3>Avaliação</h3><p>A Jucilene avalia seus pés e explica o que será feito antes de começar.</p></div>
+        <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 2</span><h3>Avaliação</h3><p>A podóloga avalia seus pés, do pé à postura, e explica o que será feito antes de começar.</p></div>
         <div class="passo"><svg class="pg" aria-hidden="true"><use href="#pegada"/></svg><span class="n">PASSO 3</span><h3>Tratamento e retorno</h3><p>Atendimento no consultório e, quando preciso, o retorno já combinado.</p></div>
       </div>
     </div>
@@ -428,8 +464,8 @@
 
 <footer>
   <div class="wrap">
-    <div><h3>Podocri · Podologia</h3>Consultório da podóloga Jucilene Aguiar no Centro de Criciúma.</div>
-    <div><h3>Contato</h3>WhatsApp (48) 99649-8963</div>
+    <div class="rod-marca"><img src="assets/logo-160.png" alt="Logo da Podocri" width="72" height="72"><div><h3>Podocri · Podologia clínica</h3>Do pé à postura: dor, prevenção e cuidado contínuo.</div></div>
+    <div><h3>Contato</h3>WhatsApp (48) 99649-8963<br><a href="https://www.instagram.com/podocrioficial/" target="_blank" rel="noopener">@podocrioficial</a> · <a href="https://www.facebook.com/profile.php?id=61568566535414" target="_blank" rel="noopener">Facebook</a></div>
     <div><h3>Endereço</h3>Ed. Sonata, sala térrea<br>R. Dr. José de Patta, 366 · Centro · Criciúma/SC</div>
     <p class="ns">Prévia criada pela Negócios Smart (negociosmart.com.br) como proposta de site. Textos provisórios, revisados com o Podocri antes da publicação.</p>
   </div>
@@ -448,7 +484,7 @@
     fungos: { vista: "cima", t: "Fungos nas unhas", d: "Unha amarelada, grossa ou quebradiça pode ser onicomicose. Começa com uma avaliação para indicar o cuidado certo.", trat: "Fungos nas unhas (onicomicose)" },
     calos: { vista: "cima", t: "Calos nos dedos", d: "O atrito do calçado forma calos no dedinho, em cima e entre os dedos. Remoção cuidadosa e orientação de calçado.", trat: "Calos e calosidades" },
     verruga: { vista: "sola", t: "Verruga plantar", d: "Aparece na sola e incomoda ao pisar. Tratamento no consultório, incluindo a cauterização.", trat: "Verrugas" },
-    pisada: { vista: "sola", t: "Pisada e arco do pé", d: "Dor ao caminhar ou calos que sempre voltam podem vir da pisada. A podoscopia mostra como você apoia o pé.", trat: "Podoscopia (exame da pisada)" },
+    pisada: { vista: "sola", t: "Pisada e arco do pé", d: "Dor ao caminhar ou calos que sempre voltam podem vir da pisada. A avaliação do pé à postura mostra como você apoia o pé e o que ajustar.", trat: "Avaliação do pé à postura" },
     calosidade: { vista: "sola", t: "Calcanhar ressecado", d: "Pele grossa e rachaduras no calcanhar. Desbaste cuidadoso e orientação de hidratação.", trat: "Calos e calosidades" },
   };
   const info = $("#info");
